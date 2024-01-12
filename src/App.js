@@ -1,6 +1,7 @@
 import './App.css';
 import Axios from "axios";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -68,17 +69,17 @@ function App() {
         }}
         type="number"></input></label>
 
-        <button onClick={add} >Registrar</button>
+        <button className='btn btn-success' onClick={add} >Registrar</button>
 
       </div>
 
         <div className='lista'>
 
-          {
-            empleadosList.map((val, key) => {
-              return <div className=''> {val.nombre} </div>
-            })
-          }
+        {
+          empleadosList.map((val, key) => {
+            return <div className=''> {val.nombre} </div>
+          })
+        }
 
         </div>
 
