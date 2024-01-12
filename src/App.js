@@ -10,6 +10,8 @@ function App() {
   const [cargo,setCargo] = useState("");
   const [anios,setAnios] = useState(0);
 
+  const [empleadosList, setEmpleados] = useState([]);
+
   const add = () => {
     Axios.post("http://localhost:3001/create", {
       nombre:nombre,
@@ -18,9 +20,18 @@ function App() {
       cargo:cargo,
       anios:anios
     }).then(() => {
+      getEmpleados();
       alert("Empleado registrado");
     });
   };
+
+  const getEmpleados = () => {
+    Axios.get("http://localhost:3001/empleados").then((response) => {
+      setEmpleados(response.data);
+    });
+  };
+
+  getEmpleados();
 
   return (
     <div className="App">
@@ -60,6 +71,16 @@ function App() {
         <button onClick={add} >Registrar</button>
 
       </div>
+
+        <div className='lista'>
+
+          {
+            empleadosList.map((val, key) => {
+              return <div className=''> {val.nombre} </div>
+            })
+          }
+
+        </div>
 
     </div>
   );
